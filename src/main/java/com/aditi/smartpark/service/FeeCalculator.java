@@ -1,0 +1,4 @@
+package com.aditi.smartpark.service;
+import java.math.BigDecimal; import java.time.Duration; import java.time.LocalDateTime;
+public final class FeeCalculator {private static final long BLOCK_SECONDS=10800;private static final BigDecimal BLOCK_FEE=new BigDecimal("50.00");private FeeCalculator(){}
+ public static BigDecimal calculate(LocalDateTime entry,LocalDateTime exit){if(entry==null||exit==null)throw new IllegalArgumentException("Entry and exit timestamps are required");if(exit.isBefore(entry))throw new IllegalArgumentException("Exit time cannot be before entry time");long seconds=Duration.between(entry,exit).getSeconds();if(seconds==0)return BigDecimal.ZERO.setScale(2);long blocks=(seconds+BLOCK_SECONDS-1)/BLOCK_SECONDS;return BLOCK_FEE.multiply(BigDecimal.valueOf(blocks)).setScale(2);}}

@@ -1,0 +1,13 @@
+{
+  "info": {"name":"SmartPark CA2 API","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
+  "variable":[{"key":"baseUrl","value":"http://localhost:8080"},{"key":"bookingId","value":"1"}],
+  "item":[
+    {"name":"Available slots","request":{"method":"GET","url":"{{baseUrl}}/api/slots/available"}},
+    {"name":"Create booking","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"vehicleNumber\": \"MH31AB1234\",\n  \"slotId\": 1,\n  \"entryTime\": \"2026-10-30T09:00:00\"\n}"},"url":"{{baseUrl}}/api/bookings"}},
+    {"name":"Active bookings","request":{"method":"GET","url":"{{baseUrl}}/api/bookings/active"}},
+    {"name":"Booking details","request":{"method":"GET","url":"{{baseUrl}}/api/bookings/{{bookingId}}"}},
+    {"name":"Fare estimate","request":{"method":"GET","url":"{{baseUrl}}/api/bookings/{{bookingId}}/fare"}},
+    {"name":"Checkout","request":{"method":"POST","url":"{{baseUrl}}/api/bookings/{{bookingId}}/checkout"}},
+    {"name":"Daily revenue","request":{"method":"GET","url":"{{baseUrl}}/api/reports/revenue?date=2026-10-30"}}
+  ]
+}
